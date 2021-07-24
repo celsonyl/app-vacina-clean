@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/person")
@@ -27,7 +26,7 @@ public class PersonController {
         var personDomain = new PersonMapperImpl().personRequestToDomain(requestPerson);
         var savePerson = createPersonUsecase.createPerson(personDomain);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savePerson.getId()).toUri();
+        var uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savePerson.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
     }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/vaccine")
@@ -28,7 +27,7 @@ public class VaccineController {
         var vaccineDomain = new VaccineMapperImpl().vaccineRequestToDomain(requestVaccine);
         var createVaccine = createVaccineUsecase.saveVaccine(vaccineDomain);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createVaccine.getId()).toUri();
+        var uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createVaccine.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
     }

@@ -3,6 +3,7 @@ package com.example.zupclean.gateway.h2database.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -16,6 +17,7 @@ public class PersonDatabase implements Serializable {
     private String name;
 
     @Column(unique = true)
+    @Email
     private String email;
 
     @JsonFormat(pattern = "dd/MM/yyyy", timezone = "GMT-3")
